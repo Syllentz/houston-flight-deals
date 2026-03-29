@@ -7,43 +7,29 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 
 console.log('Houston Flight Deals - Scheduler Started');
-console.log('Running every 4 hours. Press Ctrl+C to stop.\n');
+console.log('Running on the 1st of each month at 8am CT. Press Ctrl+C to stop.\n');
 
 // Run immediately on start
 runJob();
 
-// Then every 4 hours (at minute 0 of hours 0, 4, 8, 12, 16, 20)
-cron.schedule('0 */4 * * *', () => {
+// 1st of every month at 8am (CT is handled by system timezone)
+cron.schedule('0 8 1 * *', () => {
   runJob();
 });
 
 function runJob() {
   const now = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' });
-  console.log(`[${now}] Starting price check...`);
+  console.log(`[${now}] Starting full price sweep...`);
 
   try {
     execSync('npx tsx src/main.ts --push', {
       cwd: ROOT,
       stdio: 'inherit',
-      timeout: 5 * 60 * 1000, // 5 minute timeout
+      timeout: 10 * 60 * 1000, // 10 minute timeout (29 destinations)
     });
   } catch (error: any) {
     console.error(`[${now}] Job failed:`, error.message);
   }
 
-  const next = getNextRun();
-  console.log(`Next run: ${next}\n`);
-}
-
-function getNextRun(): string {
-  const now = new Date();
-  const nextHour = Math.ceil(now.getHours() / 4) * 4;
-  const next = new Date(now);
-  if (nextHour >= 24) {
-    next.setDate(next.getDate() + 1);
-    next.setHours(0, 0, 0, 0);
-  } else {
-    next.setHours(nextHour, 0, 0, 0);
-  }
-  return next.toLocaleString('en-US', { timeZone: 'America/Chicago' });
+  console.log(`Next run: 1st of next month at 8am CT\n`);
 }
