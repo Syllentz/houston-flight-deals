@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Houston Flight Deals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fire: { 50: '#fff7ed', 100: '#ffedd5', 500: '#f97316', 600: '#ea580c', 700: '#c2410c' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .deal-card { transition: transform 0.2s, box-shadow 0.2s; }
+    .deal-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .savings-bar { background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%); }
+    .record-pulse { animation: pulse-red 2s infinite; }
+    @keyframes pulse-red {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white">
+    <div class="max-w-6xl mx-auto px-4 py-10 sm:py-14">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-4xl">&#9992;</span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Houston Flight Deals</h1>
+      </div>
+      <p class="text-blue-100 text-lg mt-1">Record-low prices & crazy vacation deals from IAH & HOU</p>
+      <div class="mt-5 flex flex-wrap gap-4 text-sm text-blue-200">
+        <span class="bg-blue-500/30 px-3 py-1 rounded-full">Tracking 58 routes</span>
+        <span class="bg-blue-500/30 px-3 py-1 rounded-full">24 price checks</span>
+        <span class="bg-blue-500/30 px-3 py-1 rounded-full">Updated Mar 29, 2026, 12:00 PM CT</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-10 bg-white/80 backdrop-blur border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 flex gap-6 text-sm font-medium">
+      <a href="#record-lows" class="py-3 border-b-2 border-red-500 text-red-600">Record Lows</a>
+      <a href="#vacation-deals" class="py-3 border-b-2 border-transparent hover:border-emerald-500 text-gray-600 hover:text-emerald-600">Vacation Deals</a>
+      <a href="#all-routes" class="py-3 border-b-2 border-transparent hover:border-blue-500 text-gray-600 hover:text-blue-600">All Routes</a>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- Record Lows Section -->
+    <section id="record-lows" class="mb-14">
+      <div class="flex items-center gap-2 mb-6">
+        <span class="text-2xl">&#128293;</span>
+        <h2 class="text-2xl font-bold text-gray-800">Record-Low Prices</h2>
+        <span class="bg-red-100 text-red-700 text-xs font-semibold px-2 py-0.5 rounded-full">1 active</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="deal-card bg-white rounded-xl border border-red-200 hover:border-red-300 shadow-sm overflow-hidden">
+      <div class="p-5">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <div class="text-xs text-gray-400 font-medium">HOU</div>
+            <h3 class="text-lg font-bold text-gray-800">Montego Bay</h3>
+            <div class="text-xs text-gray-500">Jamaica</div>
+          </div>
+          <span class="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full tracking-wide record-pulse">RECORD LOW</span>
+        </div>
+
+        <div class="flex items-baseline gap-2 mb-3">
+          <span class="text-3xl font-extrabold text-red-600">$480</span>
+          <span class="text-sm text-gray-400 line-through">$480</span>
+          
+        </div>
+
+        <div class="space-y-1 text-xs text-gray-500">
+          <div class="flex items-center gap-1"><span>&#9992;</span> American</div>
+          <div class="flex items-center gap-1"><span>&#128197;</span> May 16 - May 23 (7 days)</div>
+          <div class="flex items-center gap-1"><span>&#128260;</span> Round-trip &middot; 1 stop</div>
+        </div>
+
+        
+      </div>
+    </div></div>
+    </section>
+
+    <!-- Crazy Vacation Deals Section -->
+    <section id="vacation-deals" class="mb-14">
+      <div class="flex items-center gap-2 mb-6">
+        <span class="text-2xl">&#127796;</span>
+        <h2 class="text-2xl font-bold text-gray-800">Crazy Vacation Deals</h2>
+        <span class="bg-emerald-100 text-emerald-700 text-xs font-semibold px-2 py-0.5 rounded-full">0 active</span>
+      </div>
+      
+    <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-8 text-center">
+      <div class="text-4xl mb-3">&#128269;</div>
+      <p class="text-gray-500">No crazy deals yet. We flag vacation flights that drop 30%+ below their 90-day average — keep watching!</p>
+    </div>
+    </section>
+
+    <!-- All Routes Table -->
+    <section id="all-routes">
+      <div class="flex items-center gap-2 mb-6">
+        <span class="text-2xl">&#128203;</span>
+        <h2 class="text-2xl font-bold text-gray-800">All Tracked Routes</h2>
+      </div>
+      <div class="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-200">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-gray-50 text-left text-gray-500 uppercase text-xs tracking-wider">
+              <th class="px-4 py-3">Route</th>
+              <th class="px-4 py-3">Latest Price</th>
+              <th class="px-4 py-3">All-Time Low</th>
+              <th class="px-4 py-3">30d Avg</th>
+              <th class="px-4 py-3">90d Avg</th>
+              <th class="px-4 py-3">Checks</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Mexico City</span>
+        <span class="text-gray-400 text-xs ml-1">MEX</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">$342 </td>
+      <td class="px-4 py-3 text-gray-600">$240</td>
+      <td class="px-4 py-3 text-gray-600">$267</td>
+      <td class="px-4 py-3 text-gray-600">$267</td>
+      <td class="px-4 py-3 text-gray-400">5</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Mexico City</span>
+        <span class="text-gray-400 text-xs ml-1">MEX</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">$248 </td>
+      <td class="px-4 py-3 text-gray-600">$240</td>
+      <td class="px-4 py-3 text-gray-600">$243</td>
+      <td class="px-4 py-3 text-gray-600">$243</td>
+      <td class="px-4 py-3 text-gray-400">3</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Montego Bay</span>
+        <span class="text-gray-400 text-xs ml-1">MBJ</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">$520 </td>
+      <td class="px-4 py-3 text-gray-600">$480</td>
+      <td class="px-4 py-3 text-gray-600">$495</td>
+      <td class="px-4 py-3 text-gray-600">$495</td>
+      <td class="px-4 py-3 text-gray-400">5</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Montego Bay</span>
+        <span class="text-gray-400 text-xs ml-1">MBJ</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-red-600">$480 <span class="text-[10px] text-red-500 font-bold">LOW</span></td>
+      <td class="px-4 py-3 text-gray-600">$480</td>
+      <td class="px-4 py-3 text-gray-600">$480</td>
+      <td class="px-4 py-3 text-gray-600">$480</td>
+      <td class="px-4 py-3 text-gray-400">3</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Liberia</span>
+        <span class="text-gray-400 text-xs ml-1">LIR</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">$562 </td>
+      <td class="px-4 py-3 text-gray-600">$498</td>
+      <td class="px-4 py-3 text-gray-600">$515</td>
+      <td class="px-4 py-3 text-gray-600">$515</td>
+      <td class="px-4 py-3 text-gray-400">5</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Liberia</span>
+        <span class="text-gray-400 text-xs ml-1">LIR</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">$505 </td>
+      <td class="px-4 py-3 text-gray-600">$498</td>
+      <td class="px-4 py-3 text-gray-600">$502</td>
+      <td class="px-4 py-3 text-gray-600">$502</td>
+      <td class="px-4 py-3 text-gray-400">3</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Cancun</span>
+        <span class="text-gray-400 text-xs ml-1">CUN</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Punta Cana</span>
+        <span class="text-gray-400 text-xs ml-1">PUJ</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; San Juan</span>
+        <span class="text-gray-400 text-xs ml-1">SJU</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Oranjestad</span>
+        <span class="text-gray-400 text-xs ml-1">AUA</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Nassau</span>
+        <span class="text-gray-400 text-xs ml-1">NAS</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Los Cabos</span>
+        <span class="text-gray-400 text-xs ml-1">SJD</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Guadalajara</span>
+        <span class="text-gray-400 text-xs ml-1">GDL</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Belize City</span>
+        <span class="text-gray-400 text-xs ml-1">BZE</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; San Jose</span>
+        <span class="text-gray-400 text-xs ml-1">SJO</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Bogota</span>
+        <span class="text-gray-400 text-xs ml-1">BOG</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Lima</span>
+        <span class="text-gray-400 text-xs ml-1">LIM</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Sao Paulo</span>
+        <span class="text-gray-400 text-xs ml-1">GRU</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Los Angeles</span>
+        <span class="text-gray-400 text-xs ml-1">LAX</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; New York</span>
+        <span class="text-gray-400 text-xs ml-1">JFK</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Miami</span>
+        <span class="text-gray-400 text-xs ml-1">MIA</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; San Francisco</span>
+        <span class="text-gray-400 text-xs ml-1">SFO</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Denver</span>
+        <span class="text-gray-400 text-xs ml-1">DEN</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Chicago</span>
+        <span class="text-gray-400 text-xs ml-1">ORD</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Seattle</span>
+        <span class="text-gray-400 text-xs ml-1">SEA</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Honolulu</span>
+        <span class="text-gray-400 text-xs ml-1">HNL</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; London</span>
+        <span class="text-gray-400 text-xs ml-1">LHR</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Paris</span>
+        <span class="text-gray-400 text-xs ml-1">CDG</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Madrid</span>
+        <span class="text-gray-400 text-xs ml-1">MAD</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Rome</span>
+        <span class="text-gray-400 text-xs ml-1">FCO</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Barcelona</span>
+        <span class="text-gray-400 text-xs ml-1">BCN</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">IAH &rarr; Amsterdam</span>
+        <span class="text-gray-400 text-xs ml-1">AMS</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Cancun</span>
+        <span class="text-gray-400 text-xs ml-1">CUN</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Punta Cana</span>
+        <span class="text-gray-400 text-xs ml-1">PUJ</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; San Juan</span>
+        <span class="text-gray-400 text-xs ml-1">SJU</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Oranjestad</span>
+        <span class="text-gray-400 text-xs ml-1">AUA</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Nassau</span>
+        <span class="text-gray-400 text-xs ml-1">NAS</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Los Cabos</span>
+        <span class="text-gray-400 text-xs ml-1">SJD</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Guadalajara</span>
+        <span class="text-gray-400 text-xs ml-1">GDL</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Belize City</span>
+        <span class="text-gray-400 text-xs ml-1">BZE</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; San Jose</span>
+        <span class="text-gray-400 text-xs ml-1">SJO</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Bogota</span>
+        <span class="text-gray-400 text-xs ml-1">BOG</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Lima</span>
+        <span class="text-gray-400 text-xs ml-1">LIM</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Sao Paulo</span>
+        <span class="text-gray-400 text-xs ml-1">GRU</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Los Angeles</span>
+        <span class="text-gray-400 text-xs ml-1">LAX</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; New York</span>
+        <span class="text-gray-400 text-xs ml-1">JFK</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Miami</span>
+        <span class="text-gray-400 text-xs ml-1">MIA</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; San Francisco</span>
+        <span class="text-gray-400 text-xs ml-1">SFO</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Denver</span>
+        <span class="text-gray-400 text-xs ml-1">DEN</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Chicago</span>
+        <span class="text-gray-400 text-xs ml-1">ORD</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Seattle</span>
+        <span class="text-gray-400 text-xs ml-1">SEA</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Honolulu</span>
+        <span class="text-gray-400 text-xs ml-1">HNL</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; London</span>
+        <span class="text-gray-400 text-xs ml-1">LHR</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Paris</span>
+        <span class="text-gray-400 text-xs ml-1">CDG</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Madrid</span>
+        <span class="text-gray-400 text-xs ml-1">MAD</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Rome</span>
+        <span class="text-gray-400 text-xs ml-1">FCO</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Barcelona</span>
+        <span class="text-gray-400 text-xs ml-1">BCN</span>
+        <span class="ml-1 text-xs">&#127796;</span>
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+      <td class="px-4 py-3">
+        <span class="font-medium text-gray-800">HOU &rarr; Amsterdam</span>
+        <span class="text-gray-400 text-xs ml-1">AMS</span>
+        
+      </td>
+      <td class="px-4 py-3 font-semibold text-gray-800">- </td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-600">-</td>
+      <td class="px-4 py-3 text-gray-400">0</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 mt-16 py-8 text-center text-sm text-gray-400">
+    <p>Prices updated every ~4 hours via Amadeus API. Fares shown were available at time of check and may have changed.</p>
+    <p class="mt-1">Last updated: Mar 29, 2026, 12:00 PM Central Time</p>
+  </footer>
+
+</body>
+</html>

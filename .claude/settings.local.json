@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:developers.amadeus.com)",
+      "WebFetch(domain:serpapi.com)",
+      "WebFetch(domain:www.oreateai.com)",
+      "WebFetch(domain:accounts.amadeus.com)",
+      "Bash(start \"\" \"C:/Users/nistr/Projects/Flights/docs/index.html\")"
+    ]
+  }
+}

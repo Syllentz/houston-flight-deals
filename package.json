@@ -1,0 +1,24 @@
+{
+  "name": "houston-flight-deals",
+  "version": "1.0.0",
+  "description": "Track record-low flight prices from Houston and publish deals to GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "fetch": "tsx src/main.ts",
+    "start": "tsx src/scheduler.ts",
+    "generate": "tsx src/generate-site.ts",
+    "deploy": "tsx src/main.ts --push"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "dotenv": "^16.4.7",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.13.0",
+    "@types/node-cron": "^3.0.11",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
